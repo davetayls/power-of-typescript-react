@@ -1,0 +1,23 @@
+{
+  "name": "power-of-typescript-react",
+  "version": "1.0.0",
+  "description": "A small project exploring the Power of TypeScript with React Series http://davetayls.me/blog/2017/06/12/the-power-of-typescript-for-react",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davetayls/power-of-typescript-react.git"
+  },
+  "author": "Dave Taylor (davetayls.me)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davetayls/power-of-typescript-react/issues"
+  },
+  "homepage": "https://github.com/davetayls/power-of-typescript-react#readme",
+  "dependencies": {
+    "typescript": "^2.4.1"
+  }
+}
