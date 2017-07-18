@@ -1,7 +1,12 @@
-
 // Our application is keeping track of current player
+interface IPlayerTurnState {
+  id: number;
+}
+
 interface IAppState {
-  playerTurn: number;
+  playerTurn: IPlayerTurnState;
+  stats: IStats;
+  totalsMessage: string;
 }
 
 // We have an action with customisable payload and meta
@@ -28,16 +33,68 @@ interface IGenericAction<P, M> {
 
 // Our positive action and specific action to change player
 // See http://davetayls.me/blog/2017/06/26/the-power-of-typescript-for-react-3-actions
-interface IAction<P> extends IGenericAction<P, undefined> {}
+interface IAction<P> extends IGenericAction<P, undefined> {
+}
 type ChangePlayerAction = IAction<number>;
 
+// Some Current Stats
+interface IStats {
+  roomA: number;
+  roomB: number;
+}
+
 // Our reducer
-function changePlayerReducer(
+export function changePlayerReducer(
   state: IAppState,
   action: ChangePlayerAction
-) {
+):IAppState {
   return {
     ...state,
-    playerTurn: action.payload
+    playerTurn: { id: action.payload || 0 }
   }
 }
+
+export function calculateTotalsReducer(
+  state: IAppState,
+  action: ChangePlayerAction
+): IAppState {
+  const { playerTurn, stats } = state;
+  const player = getPlayer(playerTurn.id);
+  return {
+    ...state,
+    totalsMessage: `Player ${player.name} has ${stats.roomA + stats.roomB} score across all rooms`
+  };
+}
+
+
+
+
+
+
+
+
+
+// Players for us to show stats for
+interface IPlayer {
+  id: number;
+  name: string;
+}
+
+const PLAYERS: { [key: number]: IPlayer } = {
+  1: { id: 1, name: 'Fred' },
+  2: { id: 2, name: 'Bob' }
+};
+
+function getPlayer(playerNumber: number) {
+  return PLAYERS[playerNumber];
+}
+
+
+
+
+
+
+
+
+
+

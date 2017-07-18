@@ -4,8 +4,9 @@
   "description": "A small project exploring the Power of TypeScript with React Series http://davetayls.me/blog/2017/06/12/the-power-of-typescript-for-react",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsc -w --pretty",
+    "build": "tsc --pretty",
+    "test": "npm run build"
   },
   "repository": {
     "type": "git",
